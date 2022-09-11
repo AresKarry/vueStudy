@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+		<!-- 
+				监视属性watch：
+					1.当被监视的属性变化时, 回调函数自动调用, 进行相关操作
+					2.监视的属性必须存在，才能进行监视！！
+					3.监视的两种写法：
+							(1).new Vue时传入watch配置
+							(2).通过vm.$watch监视
+		 -->
+		<!-- 准备好一个容器 -->
+		<div id="box">
+			<h1>王俊凯的{{info}}会先上映</h1>
+			<button @click="filmName">切换电影</button>
+		</div>
+		<script type="text/javascript">
+			 Vue.config.productionTip=false  //阻止Vue在启动时产生提示          
+			
+			const vm = new Vue({
+				el:'#box',
+				data:{
+					isDuanqiao:true
+				},
+				methods: {
+					filmName(){
+						this.isDuanqiao=!this.isDuanqiao
+					}
+				},
+				computed:{
+
+					info(){
+						return this.isDuanqiao ? '断桥' : '刺猬'
+					}
+				},
+                // watch:{
+				// 	isDuanqiao:{
+
+				// 		//handler什么时候调用？当isfilmName发生改变时调用
+				// 		handler(newValue,oldValue){
+				// 			console.log(123,newValue,oldValue)
+				// 		},
+				// 		immediate:true,//让handler立即执行，初始化时让handler调用一下
+				// 	}
+                //}
+			})
+			//监视属性的第二种写法
+            vm.$watch('isDuanqiao',{
+				
+						handler(newValue,oldValue){
+							console.log(123,newValue,oldValue)
+						},
+						immediate:true,
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../JS/vue.js">
+
+    </script>
+</head>
+
+<body>
+    <!-- 
+				1.一个重要的内置关系：VueComponent.prototype.__proto__ === Vue.prototype
+				2.为什么要有这个关系：让组件实例对象（vc）可以访问到 Vue原型上的属性、方法。
+		-->
+    <!-- 准备好一个容器 -->
+    <div id="box">
+        <school></school>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false  //阻止Vue在启动时产生提示   
+        Vue.prototype.c = 11
+        // function Demo(){
+        //     this.a=1,
+        //     this.b=2
+        //     console.log(this)
+        // }   
+        // //创建实例对象
+        // const d =new Demo()
+        // console.log(Demo.prototype)//显示原型属性
+        // console.log(d.__proto__)//隐式原型属性
+
+
+
+        const school = Vue.extend({
+            name: 'school',
+            template: `
+				<div>
+					<h2>学校名称：{{name}}</h2>	
+					<h2>学校地址：{{address}}</h2>
+                    <button @click="showX">点我输出x</button>	
+				</div>
+			`,
+            data() {
+                return {
+                    name: '尚硅谷',
+                    address: '北京'
+                }
+            },
+            methods: {
+				showX(){
+					console.log(this.c)
+				}
+			},
+        })
+
+        // 创建Vue实例对象
+        const vm = new Vue({
+            el: '#box',
+            components: { school }
+        })
+    </script>
+</body>
+
+</html>

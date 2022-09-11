@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+        
+		<!-- 准备好一个容器 -->
+		<div id="box">
+            <input type="text" placeholder="请输入名字" v-model="keyword">
+			<ul>
+                <!-- 遍历数组 -->
+                <li v-for="(p,index) in filPersons" :key="index">
+                    {{p.name}}-{{p.age}}-{{p.sex}}
+                </li>
+            </ul>
+            
+		</div>
+		<script type="text/javascript">
+			 Vue.config.productionTip=false  //阻止Vue在启动时产生提示
+            //用watch实现
+            //#region
+			// const vm = new Vue({
+			// 	el:'#box',
+			// 	data:{
+            //         keyword:'',
+			// 		persons:[
+            //             {id:'001',name:'马冬梅',age:20,sex:'女'},
+            //             {id:'002',name:'周冬雨',age:21,sex:'女'},
+            //             {id:'003',name:'周杰伦',age:22,sex:'男'},
+            //             {id:'004',name:'庄文杰',age:22,sex:'男'},
+            //         ],
+            //         filPersons:[]
+			// 	},
+			// 	watch:{
+            //         keyword:{
+            //             immediate:true,
+            //             handler(val){
+            //                 //console.log('keyword发生改变了，值为'+val)
+            //                 this.filPersons=this.persons.filter((p)=>{
+            //                 //函数体
+            //                 //indexOf可以判断一个字符串是否包含另一个字符串
+            //                 return p.name.indexOf(val)!==-1
+            //                 })
+            //             }
+            //         }
+            //     }
+			// })
+            //#endregion
+            //用computed实现
+            const vm = new Vue({
+				el:'#box',
+				data:{
+                    keyword:'',
+					persons:[
+                        {id:'001',name:'马冬梅',age:20,sex:'女'},
+                        {id:'002',name:'周冬雨',age:21,sex:'女'},
+                        {id:'003',name:'周杰伦',age:22,sex:'男'},
+                        {id:'004',name:'庄文杰',age:22,sex:'男'},
+                    ],
+				},
+				computed:{
+                    filPersons(){
+                        return this.persons.filter((p)=>{
+                            return p.name.indexOf(this.keyword) !== -1
+                        })
+                    }
+                }
+			})
+		</script>
+	</body>
+</html>

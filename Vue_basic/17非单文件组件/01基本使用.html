@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../JS/vue.js">
+
+    </script>
+</head>
+
+<body>
+    <!-- 
+			Vue中使用组件的三大步骤：
+					一、定义组件(创建组件)
+					二、注册组件
+					三、使用组件(写组件标签)
+
+			一、如何定义一个组件？
+						使用Vue.extend(options)创建，其中options和new Vue(options)时传入的那个options几乎一样，但也有点区别；
+						区别如下：
+								1.el不要写，为什么？ ——— 最终所有的组件都要经过一个vm的管理，由vm中的el决定服务哪个容器。
+								2.data必须写成函数，为什么？ ———— 避免组件被复用时，数据存在引用关系。
+						备注：使用template可以配置组件结构。
+
+			二、如何注册组件？
+							1.局部注册：靠new Vue的时候传入components选项
+							2.全局注册：靠Vue.component('组件名',组件)
+
+			三、编写组件标签：
+							<school></school>
+		-->
+    <!-- 准备好一个容器 -->
+    <div id="box">
+        <!-- 第三步，编写组件标签 -->
+        <actor></actor>
+        <hr>
+        <film></film>
+    </div>
+
+    <div id="root2">
+        <hello></hello>
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false  //阻止Vue在启动时产生提示          
+
+        //创建actor组件
+        const actor = Vue.extend({
+            //组件定义时一定不要写el配置项，因为最终所有的组件都要被一个vm管理，由vm决定服务于那个容器
+            //el:'#box',
+            template: `
+                <div>
+                    <h2>演员姓名：{{name}}</h2>
+                    <h2>粉丝名称：{{fans}}</h2>
+                    <button @click='showName'>点我提示演员姓名</button>
+                </div>
+            `,
+            data() {
+                return {
+                    name: '王俊凯',
+                    fans: '小螃蟹',
+                }
+
+            },
+            methods: {
+                showName(){
+                    alert('世界巨星'+this.name)
+                }
+            },
+        })
+
+        //创建film组件
+        const film = Vue.extend({
+            template: `
+                <div>
+                    <h2>电影名称：{{filmName}}</h2>
+                    <h2>角色名称：{{actorName}}</h2>
+                </div>
+            `,
+            data() {
+                return {
+                    filmName: '断桥',
+                    actorName: '孟超'
+                }
+
+            }
+        })
+
+        //第一步：创建hello组件
+		const hello = Vue.extend({
+			template:`
+				<div>	
+					<h2>你好啊！{{name}}</h2>
+				</div>
+			`,
+			data(){
+				return {
+					name:'Tom'
+				}
+			}
+		})
+		
+		//第二步：全局注册组件
+		Vue.component('hello',hello)
+
+        // 创建Vue实例对象
+        const vm = new Vue({
+            el: '#box',
+            //第二步，注册组件（局部注册）
+            components: {
+                //组件名在这里定义
+                actor: actor,
+                //同名可以简写成这样
+                film
+            }
+        })
+        
+        new Vue({
+            el:'#root2',
+            components:{
+                hello:hello
+            }
+        })
+    </script>
+</body>
+
+</html>

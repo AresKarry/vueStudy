@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+
+		<!-- 准备好一个容器 -->
+		<div id="box">
+			<h1>当前的n值是：{{n}}</h1>
+            <button @click="add">点我n++</button>
+            <button @click="bye">点我销毁vm</button>
+		</div>
+		<script type="text/javascript">
+			 Vue.config.productionTip=false  //阻止Vue在启动时产生提示          
+			// 创建Vue实例对象
+			const vm = new Vue({
+				el:'#box',
+                // template:'',
+
+				data:{
+					n:1
+				},
+                methods: {
+                    add(){
+                        this.n++
+                    },
+                    bye(){
+                        this.$destroy()
+                    }
+                },
+				beforeCreate() {
+                    console.log('beforeCreate')
+                    //console.log(this)
+                    //debugger;//卡一个断点
+                },
+                created() {
+                    console.log('created')
+                    //console.log(this)
+                    //debugger;
+                },
+                beforeMount() {
+                    console.log('beforeMount')
+                    // console.log(this)
+                    // debugger;
+                },
+                mounted() {
+                    console.log('mounted')
+                    console.log(this)
+                },
+                beforeUpdate() {
+                    console.log('beforeUpdate')
+                    //console.log(this.n)
+                },
+                updated() {
+                    console.log('updated')
+                    //console.log(this.n)
+                },
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript" src="../JS/vue.js">
+
+    </script>
+</head>
+
+<body>
+   
+    <!-- 准备好一个容器 -->
+    <div id="box">
+        <!-- 第三步，编写组件标签 -->
+        
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false  //阻止Vue在启动时产生提示          
+        //创建film组件
+        const film = Vue.extend({
+            template: `
+                <div>
+                    <h2>电影名称：{{filmName}}</h2>
+                    <h2>角色名称：{{actorName}}</h2>
+                </div>
+            `,
+            data() {
+                return {
+                    filmName: '断桥',
+                    actorName: '孟超'
+                }
+
+            }
+        })
+
+        //创建actor组件
+        const actor = Vue.extend({
+            template: `
+                <div>
+                    <h2>演员姓名：{{name}}</h2>
+                    <h2>粉丝名称：{{fans}}</h2> 
+                    <film></film>  
+                </div>
+            `,
+            data() {
+                return {
+                    name: '王俊凯',
+                    fans: '小螃蟹',
+                }
+
+            },
+            components:{
+                film
+            }
+        })
+        
+        //创建hello组件
+        const hello = Vue.extend({
+            template:`<h1>{{msg}}</h1>`,
+            data(){
+                return{
+                    msg:'hello,my name is karry'
+                }
+            }
+        })
+        
+        //创建app组件
+        const app = Vue.extend({
+            template:`
+                <div>
+                    <hello></hello>
+                    <actor></actor>  
+                </div>`,
+            components:{
+                actor,
+                hello
+            }
+        })
+
+        // 创建Vue实例对象
+        const vm = new Vue({
+            el: '#box',
+            template:`<app></app>`,
+            //第二步，注册组件（局部注册）
+            components: {
+                app
+            }
+        })
+    </script>
+</body>
+
+</html>

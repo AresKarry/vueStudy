@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+
+		<!-- 准备好一个容器 -->
+		<div id="box">
+			<h1>hello,{{name}}</h1>
+		</div>
+		<script type="text/javascript">
+			 Vue.config.productionTip=false  //阻止Vue在启动时产生提示          
+			// 创建Vue实例对象
+			const vm = new Vue({
+				el:'#box',//用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
+				data:{//data中用于存储数据
+					name:'karry'
+				}
+				
+			})
+		</script>
+	</body>
+	
+</html>

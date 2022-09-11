@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+
+		<!-- 准备好一个容器 -->
+		<div id="box">
+			<h1>王俊凯的{{info}}会先上映</h1>
+			<button @click="filmName">切换电影</button>
+		</div>
+		<script type="text/javascript">
+			 Vue.config.productionTip=false  //阻止Vue在启动时产生提示          
+			
+			const vm = new Vue({
+				el:'#box',
+				data:{
+					isDuanqiao:true
+				},
+				methods: {
+					filmName(){
+						this.isDuanqiao=!this.isDuanqiao
+					}
+				},
+				computed:{
+					//复杂写法，自己写出来的
+					// info:{
+					// 	get(){
+					// 		if(this.isDuanqiao){
+					// 			return '断桥'
+					// 		}else{
+					// 			return '刺猬'
+					// 		}
+					// 	}
+					// }
+					//简单写法
+					info(){
+						return this.isDuanqiao ? '断桥' : '刺猬'
+					}
+				}
+			})
+            
+		</script>
+	</body>
+</html>

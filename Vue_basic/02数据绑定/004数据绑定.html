@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../JS/vue.js">
+			
+    </script>
+</head>
+<body>
+    <div id="box">
+        <!-- v-bind是单向数据绑定 -->
+        单向数据绑定:<input type="text" v-bind:value="name1">
+        <br>
+        <!-- v-model双向数据绑定 -->
+        <!-- 
+            但是v-model只能用于表单类元素（输入类元素）
+            v-model：value可以简写为v-model，因为v-model默认是收集value值得
+        -->
+        双向数据绑定:<input type="text" v-model:value="name2">
+        <br>
+
+        
+         <!-- 简写 -->
+         单向数据绑定:<input type="text" :value="name1">
+         <br>
+         双向数据绑定:<input type="text" v-model="name2">
+    </div>
+    <script>
+        Vue.config.productionTip=false;
+        new Vue({
+            el:'#box',
+            data:{
+                name1:"wjk",
+                name2:'mengchao'
+            }
+        })
+    </script>
+</body>
+</html>

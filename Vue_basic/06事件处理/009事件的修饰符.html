@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+        <!--  Vue中的事件修饰符:
+                1.prevent:阻止默认事件(常用);
+                2.stop:阻止事件冒泡(常用);
+                3.once: 事件只触发一-次(常用);
+                4.capture:使用事件的捕获模式;
+                5.self:只有event . target是当前操作的元素是才触发事件;
+                6.passive:事件的默认行为立即执行，无需等待事件回调执行完毕; 
+        -->
+       
+		<!-- 准备好一个容器 -->
+		<div id="box">
+			<h1>hello,{{name}}</h1>
+            <!-- 可以直接使用@click.prevent来阻止a标签的默认行为 -->
+            <a href="https://movie.douban.com/subject/35235365/" @click.prevent="showInfo">asd</a>
+		</div>
+		<script type="text/javascript">
+			 Vue.config.productionTip=false  //阻止Vue在启动时产生提示        
+			// 创建Vue实例对象
+			const vm = new Vue({
+				el:'#box',//用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
+				data:{//data中用于存储数据
+					name:'karry'
+				},
+				methods:{
+                    showInfo(event){
+                        
+                        //event.preventDefault()//阻止默认行为
+                        alert('段永花是宇宙超级无敌大美女~')
+                    },
+                    
+                }
+			})
+		</script>
+	</body>
+</html>

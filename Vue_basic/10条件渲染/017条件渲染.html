@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+		<!-- 
+				条件渲染：
+							1.v-if
+										写法：
+												(1).v-if="表达式" 
+												(2).v-else-if="表达式"
+												(3).v-else="表达式"
+										适用于：切换频率较低的场景。
+										特点：不展示的DOM元素直接被移除。
+										注意：v-if可以和:v-else-if、v-else一起使用，但要求结构不能被“打断”。
+
+							2.v-show
+										写法：v-show="表达式"
+										适用于：切换频率较高的场景。
+										特点：不展示的DOM元素未被移除，仅仅是使用样式隐藏掉
+								
+							3.备注：使用v-if的时，元素可能无法获取到，而使用v-show一定可以获取到。
+		 -->
+		<!-- 准备好一个容器 -->
+		<div id="box">
+            <h2>当前n的值是{{n}}</h2>
+            <button @click="n++">点我n+1</button>
+
+            <!-- 使用v-show做条件渲染 -->
+			<!-- <h1 v-show="false">hello,{{name}}</h1> -->
+            <!-- <h1 v-show="1===3">hello,{{name}}</h1> -->
+
+            <!-- 使用v-if做条件渲染 -->
+            <!-- <h1 v-if="false">hello,{{name}}</h1> -->
+
+			<!-- v-else和v-else-if -->
+            <!-- <div v-show="n===1">孟超</div>
+            <div v-show="n===2">成朗</div>
+            <div v-show="n===3">周正</div> -->
+
+			<!-- template可以把元素包起来且不影响页面结构，但只能配合v-if使用 -->
+			<template v-if="n===1">
+				<h2>孟超</h2>
+            	<h2>成朗</h2>
+    			<h2>周正</h2>
+			</template>
+		</div>
+		<script type="text/javascript">
+			 Vue.config.productionTip=false  //阻止Vue在启动时产生提示          
+			// 创建Vue实例对象
+			const vm = new Vue({
+				el:'#box',
+				data:{
+					name:'karry',
+                    n:0
+				}
+				
+			})
+		</script>
+	</body>
+</html>

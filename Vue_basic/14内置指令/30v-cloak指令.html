@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+        <style>
+            [v-cloak]{
+                display: none;
+            }
+        </style>
+        <script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+        <!-- 
+				v-cloak指令（没有值）：
+						1.本质是一个特殊属性，Vue实例创建完毕并接管容器后，会删掉v-cloak属性。
+						2.使用css配合v-cloak可以解决网速慢时页面展示出{{xxx}}的问题。
+		-->
+		<!-- 准备好一个容器 -->
+		<div id="box">
+			<h1 v-cloak>hello,{{name}}</h1>
+		</div>
+		<script type="text/javascript" src="http://localhost:8080/resource/5s/vue.js"></script>
+	</body>
+        <script type="text/javascript">
+                Vue.config.productionTip=false  //阻止Vue在启动时产生提示          
+                // 创建Vue实例对象
+                const vm = new Vue({
+                    el:'#box',
+                    data:{
+                        name:'karry'
+                    }
+                    
+                })
+            </script>
+</html>

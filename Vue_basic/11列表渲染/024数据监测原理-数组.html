@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Vue监测数据改变的原理</title>
+		<!-- 引入Vue -->
+		<script type="text/javascript" src="../JS/vue.js"></script>
+	</head>
+	<body>
+        <!-- 
+            Vue.set（a，b，c）
+            a->给谁添加属性
+            b->添加什么属性
+            c->属性值
+            vm.$set（a，b，c）
+         -->
+		<!-- 准备好一个容器-->
+		<div id="root">
+            <h1>电影信息</h1>
+			<h2>电影名称：{{school.name}}</h2>
+			<h2>电影角色名称：{{school.address}}</h2>
+            <hr>
+            <button @click="dao">点我增加导演</button>
+            <h2>电影名称：{{student.name}}</h2>
+			<h2>电影角色名称：真实：{{student.age.rAge}}，对外：{{student.age.sAge}}</h2>
+            <h2 v-if="student.daoyan">导演：{{student.daoyan}}</h2>
+            <h2>爱好</h2>
+            <ul>
+                <li v-for="(h,index) in student.hobby" :key="index">
+                    {{h}}
+                </li>
+            </ul>
+            <h2>朋友们</h2>
+            <ul>
+                <li v-for="(f,index) in student.friends" :key="index">
+                    {{f.name}}-{{f.film}}
+                </li>
+            </ul>
+		</div>
+	</body>
+
+	<script type="text/javascript">
+		Vue.config.productionTip = false //阻止 vue 在启动时生成生产提示。
+
+		const vm = new Vue({
+			el:'#root',
+			data:{
+                school:{
+                    name:'断桥',
+				    address:'孟超',
+                },
+				student:{
+					name:'刺猬',
+					age:{
+						rAge:'小结巴',
+						sAge:'周正',
+					},
+                    hobby:['结巴','吃刺猬','治病'],
+					friends:[
+						{name:'成朗',film:'万里归途'},
+                        {name:'马山',film:'749局'}
+					]
+				}
+			},
+            methods: {
+                dao(){
+                    //Vue.set(this.student,'daoyan','顾长卫')
+                    vm.$set(this.student,'daoyan','顾长卫')
+                }
+            },
+		})
+	</script>
+</html>

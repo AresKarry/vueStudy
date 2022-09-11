@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<!-- 引入Vue -->
+		<script type="text/javascript" src="../JS/vue.js">
+			
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<h1>hello,{{name}}</h1>
+		</div>
+        <div id="box2">
+			<h1>hello,{{name2}}</h1>
+		</div>
+		<script type="text/javascript">
+			           
+			// 写法一
+			const x = new Vue({
+				el:'#box',
+				data:{
+					name:'karry'
+				}
+			})
+            // 写法二
+            const y = new Vue({
+				//把data写成函数，该函数必须要有返回值，返回值的内容就是我们所需要的数据值
+                //此处的this是Vue实例对象，前提是普通函数
+                //：function可以省略，直接写成data(){}
+				data:function(){
+                    return{
+                        name2:'mengchao'
+                    }
+					
+				}
+			})
+            y.$mount('#box2')
+            
+            
+		</script>
+	</body>
+</html>
