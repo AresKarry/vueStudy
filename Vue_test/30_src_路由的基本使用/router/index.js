@@ -1,0 +1,19 @@
+// 该文件专门用于创建整个应用的路由器
+import VueRouter from "vue-router"
+//
+import AboutKai from '../pages/AboutKai.vue'
+import HomeKai from '../pages/HomeKai.vue'
+
+//创建router实例对象，去管理一组一组的路由规则
+export default new VueRouter({
+    routes:[
+        {
+            path:'/about',
+            component:AboutKai
+        },
+        {
+            path:'/home',
+            component:HomeKai
+        },
+    ]
+})
